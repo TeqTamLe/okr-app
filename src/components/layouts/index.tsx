@@ -2,7 +2,11 @@ import { useState } from "react";
 import type { WithRouterProps } from "next/dist/client/with-router";
 import type { Router } from "next/router";
 import { withRouter } from "next/router";
-import { Button, Layout, Menu, theme } from "antd";
+import { Layout, Menu, theme } from "antd";
+
+import { useMenu } from "@/hooks/useMenu";
+
+import HeaderComponent from "../common/Header";
 
 const { Sider, Content, Header } = Layout;
 
@@ -12,10 +16,11 @@ interface Props extends WithRouterProps {
 
 const MainLayout = (props: React.PropsWithChildren<Props>) => {
   const [collapsed, setCollapsed] = useState(false);
+  const { items, selectedKeys, defaultSelectedKeys } = useMenu();
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-
+  console.log(items);
   return (
     <Layout
       style={{
@@ -23,44 +28,32 @@ const MainLayout = (props: React.PropsWithChildren<Props>) => {
         height: "100vh",
         backgroundColor: "white",
       }}
+      className="main-container"
     >
-      <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="demo-logo-vertical" />
+      <Sider width={220} trigger={null} collapsible collapsed={collapsed}>
+        <div className="logo">TEQ</div>
         <Menu
-          theme="dark"
+          style={{ background: "#fff" }}
           mode="inline"
-          defaultSelectedKeys={["1"]}
-          items={[
-            {
-              key: "1",
-              // icon: <UserOutlined />,
-              label: "nav 1",
-            },
-            {
-              key: "2",
-              // icon: <VideoCameraOutlined />,
-              label: "nav 2",
-            },
-            {
-              key: "3",
-              // icon: <UploadOutlined />,
-              label: "nav 3",
-            },
-          ]}
+          selectedKeys={selectedKeys}
+          defaultSelectedKeys={defaultSelectedKeys}
+          items={items}
+          inlineIndent={0}
         />
       </Sider>
       <Layout>
         <Header style={{ padding: 0, background: colorBgContainer }}>
-          <Button
+          {/* <Button
             type="text"
-            icon={collapsed ? "Close" : "Open"}
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
             style={{
               fontSize: "16px",
               width: 64,
               height: 64,
             }}
-          />
+          /> */}
+          <HeaderComponent collapsed={collapsed} setCollapsed={setCollapsed} />
         </Header>
         <Content
           style={{
