@@ -37,6 +37,7 @@ export const RouteMap: IMenu[] = [
     key: PathName.new,
     // icon: { fill: PlusCircleFilled, outline: PlusCircleOutlined },
     icon: PlusCircleFilled,
+    openSubMenu: true,
     // children: [
     //   {
     //     key: PathName.transactionMonitoring,

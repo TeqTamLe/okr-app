@@ -11,4 +11,5 @@ export interface IMenu {
   path?: string;
   children?: IMenuItem[];
   type?: "group" | "divider";
+  openSubMenu?: boolean;
 }

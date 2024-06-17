@@ -1,5 +1,5 @@
 import type { CheckboxProps } from "antd";
-import { Button, Checkbox, Input } from "antd";
+import { Button, Checkbox, Dropdown, Input } from "antd";
 
 import Layout from "@/components/layouts";
 
@@ -13,7 +13,52 @@ const HomePage: NextPageWithLayout = () => {
   };
   return (
     <div className="App">
-      <Button type="default">Button</Button>
+      <Dropdown
+        menu={{
+          items: [
+            {
+              key: "1",
+              label: (
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.antgroup.com"
+                >
+                  1st menu item
+                </a>
+              ),
+            },
+            {
+              key: "2",
+              label: (
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.aliyun.com"
+                >
+                  2nd menu item
+                </a>
+              ),
+            },
+            {
+              key: "3",
+              label: (
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.luohanacademy.com"
+                >
+                  3rd menu item
+                </a>
+              ),
+            },
+          ],
+        }}
+        placement="bottomLeft"
+        arrow
+      >
+        <Button>bottomLeft</Button>
+      </Dropdown>
       <br />
       <Checkbox onChange={onChange}>Checkbox</Checkbox>
       <br />

@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import type { MenuProps } from "antd";
+import { type MenuProps } from "antd";
 
 import { RouteMap, SidebarName } from "@/constants/routeMap";
 
@@ -62,11 +62,14 @@ export const useMenu = () => {
         //   SolidIcon && <SolidIcon />
         // );
         return getItem({
-          label: (
+          label: !parent?.openSubMenu ? (
             <Link passHref legacyBehavior href={`/${parent.key}`}>
               {SidebarName[parent.key]}
             </Link>
+          ) : (
+            SidebarName[parent.key]
           ),
+
           key: parent.key,
           icon: Icon ? <Icon /> : null,
           path: parent.path,
